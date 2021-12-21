@@ -57,6 +57,10 @@
         </activity>
 
         <meta-data
+            android:name="apiUrl"
+            android:value="http://alexixrugis.pythonanywhere.com/api/v1/" />
+
+        <meta-data
             android:name="cameraFacingFront"
             android:value="True" />
         <meta-data

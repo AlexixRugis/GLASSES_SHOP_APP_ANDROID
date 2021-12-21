@@ -1,9 +1,12 @@
 package com.example.glassesshop;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.glassesshop.api.glasses.GlassesApiUtils;
 import com.example.glassesshop.ui.GlassesDetailActivity;
 import com.example.glassesshop.utils.interfaces.IPKTransitor;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,6 +38,15 @@ public class MainActivity extends AppCompatActivity implements IPKTransitor {
             Log.d("Check","OpenCv doesn’t configured successfully");
 
         }
+
+        ApplicationInfo applicationInfo = null;
+        try {
+            applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        GlassesApiUtils.Initialize(applicationInfo.metaData.getString("apiUrl"));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

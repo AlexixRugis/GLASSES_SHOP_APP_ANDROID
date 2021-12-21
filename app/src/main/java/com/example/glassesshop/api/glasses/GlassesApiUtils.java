@@ -16,8 +16,20 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class GlassesApiUtils {
+    private static GlassesApiUtils instance;
+
+    private final HttpUtils httpUtils;
+
+    private GlassesApiUtils(String baseApiUrl) {
+        this.httpUtils = new HttpUtils(baseApiUrl);
+    }
+
+    public static void Initialize(String baseApiUrl) {
+        instance = new GlassesApiUtils(baseApiUrl);
+    }
+
     public static void getGlasses(int id, IGlasses glassesHandler) {
-        HttpUtils.get("glasses/" + String.valueOf(id), null, new JsonHttpResponseHandler() {
+        instance.httpUtils.get("glasses/" + String.valueOf(id), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
@@ -46,7 +58,7 @@ public class GlassesApiUtils {
     }
 
     public static void getAllGlasses(IGlasseslist glassesListHanler) {
-        HttpUtils.get("glasses/all/", null, new JsonHttpResponseHandler() {
+        instance.httpUtils.get("glasses/all/", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
@@ -74,7 +86,7 @@ public class GlassesApiUtils {
     }
 
     public static void getGlassesDetail(int pk, IGlassesDetail glassesDetailHandler) {
-        HttpUtils.get(String.format("glasses/%d/", pk), null, new JsonHttpResponseHandler() {
+        instance.httpUtils.get(String.format("glasses/%d/", pk), null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
