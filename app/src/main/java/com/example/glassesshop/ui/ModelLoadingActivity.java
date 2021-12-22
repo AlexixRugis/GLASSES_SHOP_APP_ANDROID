@@ -49,6 +49,7 @@ public class ModelLoadingActivity extends AppCompatActivity {
                     @Override
                     public void onProgress(int percents) {
                         binding.loadingProgress.setText(String.format("%d/100", 50 + percents/50));
+                        binding.progressBar.setProgress(50 + percents/50);
                     }
                 }).execute(textureUrl, "/storage/emulated/0/GLASSES_SHOP/cache/glasses.pngblob");
             }
@@ -56,6 +57,7 @@ public class ModelLoadingActivity extends AppCompatActivity {
             @Override
             public void onProgress(int percents) {
                 binding.loadingProgress.setText(String.format("%d/100", percents/50));
+                binding.progressBar.setProgress(percents/50);
             }
         }).execute(modelUrl, "/storage/emulated/0/GLASSES_SHOP/cache/glasses.binarypb");
     }

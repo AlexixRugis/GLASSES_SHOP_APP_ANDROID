@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.CatalogFragment"
-    android:layout_marginHorizontal="10dp">
+    tools:context=".ui.home.CatalogFragment">
 
     <ListView
         android:id="@+id/catalog_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:divider="@null"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
